@@ -1,36 +1,36 @@
 const MongoClient = require('mongodb').MongoClient;
 const assert = require('assert');
 
+const dboper = require('./operations');
 const url = 'mongodb://localhost:27017/conFusion';
 
 MongoClient.connect(url, (err, db) => {
     assert.equal(err,null);
     console.log('Connected correctly to server');
 
-    const collection = db.collection("dishes");
-
     //插入一个doc
-    collection.insertOne({
-        "name": "Uthappizza",
-        "description": "test"
-    }, (err, result) => {
-        assert.equal(err,null);
+    dboper.insertDocument(db,
+        { name: "Vadonut", description: "test"}, "dishes",
+        (result) => {
+            console.log("Insert Document:\n", result.ops);
 
-        console.log("After Insert:\n");
-        console.log(result.ops);
+            dboper.findDocuments(db, "dishes", (docs) => {
+                console.log("Found Documents:\n", docs);
 
-        //读取当前插入的doc
-        collection.find({}).toArray((err, docs) => {
-            assert.equal(err,null);
+                dboper.updateDocument(db, { name: "Vadonut" },
+                    { description: "Updated Test" }, "dishes", (result) => {
+                        console.log("Updated Document:\n", result.result);
 
-            console.log("Found:\n");
-            console.log(docs);
+                        dboper.findDocuments(db, "dishes", (docs) => {
+                            console.log("Found Updated Documents:\n", docs);
 
-            //断开与服务器的连接
-            db.dropCollection("dishes", (err, result) => {
-               assert.equal(err, null);
-               db.close();
+                            db.dropCollection("dishes", (result) => {
+                                console.log("Dropped Collection: ", result);
+
+                                db.close();
+                            });
+                        });
+                });
             });
-        });
     });
 });
