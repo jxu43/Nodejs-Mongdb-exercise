@@ -14,12 +14,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="360">
               <caret line="24" column="26" lean-forward="true" selection-start-line="24" selection-start-column="26" selection-end-line="24" selection-end-column="26" />
             </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="www" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/bin/www">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-249" />
           </provider>
         </entry>
       </file>
@@ -83,7 +90,7 @@
             <path>
               <item name="conFusionServer" type="b2602c69:ProjectViewProjectNode" />
               <item name="conFusionServer" type="462c0819:PsiDirectoryNode" />
-              <item name="routes" type="462c0819:PsiDirectoryNode" />
+              <item name="bin" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -125,16 +132,15 @@
       <workItem from="1527056845991" duration="3000" />
       <workItem from="1527056866185" duration="14000" />
       <workItem from="1527056895655" duration="7000" />
-      <workItem from="1527056917049" duration="143000" />
+      <workItem from="1527056917049" duration="773000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="532000" />
+    <option name="totallyTimeSpent" value="1162000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="718" height="900" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24791086" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -234,6 +240,11 @@
         <state relative-caret-position="360">
           <caret line="24" column="26" lean-forward="true" selection-start-line="24" selection-start-column="26" selection-end-line="24" selection-end-column="26" />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/www">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-249" />
       </provider>
     </entry>
   </component>
