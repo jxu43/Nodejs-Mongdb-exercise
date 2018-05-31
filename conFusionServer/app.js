@@ -51,6 +51,9 @@ app.use(session({
     store: new FileStore()
 }));
 
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
+
 /*
     set up the authentication
  */
@@ -58,33 +61,12 @@ function auth(req, res, next) {
     console.log(req.session);
 
     if(!req.session.user) {
-        var authHeader = req.headers.authorization;
-
-        if (!authHeader) {
-            var err = new Error('You are not authenticated!');
-            res.setHeader('WWW-Authenticate', 'Basic');
-            err.status = 401;
-            return next(err);
-        }
-
-        //1. split header into 2 part: the second part is the base64 encode string with username and password
-        //2. split the username and password, which is seperated by ':'
-        var auth = new Buffer(authHeader.split(' ')[1], 'base64')
-            .toString().split(':');
-        var username = auth[0];
-        var password = auth[1];
-
-        if (username === 'admin' && password === 'password') {
-            req.session.user = 'admin';
-            next();
-        } else {
-            var err = new Error('You are not authenticated!');
-            res.setHeader('WWW-Authenticate', 'Basic');
-            err.status = 401;
-            return next(err);
-        }
+        var err = new Error('You are not authenticated!');
+        res.setHeader('WWW-Authenticate', 'Basic');
+        err.status = 401;
+        return next(err);
     } else {
-        if (req.session.user === 'admin') {
+        if (req.session.user === 'authenticated') {
             next();
         } else {
             var err = new Error('You are not authenticated!');
@@ -101,8 +83,6 @@ app.use(auth);
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
 app.use('/dishes',dishRouter);
 app.use('/promotions',promoRouter);
 app.use('/leaders',leaderRouter);
